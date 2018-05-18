@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=8">
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-control" content="no-cache">
+  <meta http-equiv="Cache" content="no-cache">
+  <title>webkit与KSO交互接口-demo</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>Hello WebJs - KSOApi!</h1>
+    <h2 id="methodCallback"></h2>
+    <h3 id="changeMsg"></h3>
+    <input type="text" id="path" name="文件路径"/>
+    <button id="pickFile">选择文件</button>
+    <button id="openWord">打开Word</button>
+    <button id="addWord">打开Word模板</button>
+    <button id="openExcel">打开Excel</button>
+    <button id="addExcel">打开Excel模板</button>
+    <button id="getActiveWorkbookName">获取Excel表格名称</button>    
+    <button id="callbackToJs">测试异步调用JS方法</button>
+    <button id="download">下载文件</button>
+    <button id="login">登录</button>
+    <button id="showPayDlg">显示支付弹窗</button>
+    <button id="dbCreatUniqueFileId">创建数据库</button>
+    <button id="dbPostData">提交数据</button>
+    <button id="dbPostCommData">提交共享数据(输入框：comm_table,comm_key,comm_val,post)</button>
+    <button id="dbGetData">获取数据</button>
+    <button id="dbGetCommData">获取共享数据(输入框：comm_table,get)</button>
+    <button id="selectCell">选择单元格</button>
+    <button id="getValue">获取单元格内容</button>
+    <button id="getSheetSelection">获取选中单元格</button>
+    <button id="cellChange">监听单元格改变</button>
+    <button id="test">监听单元格选中</button>
+    <button id="disconnect">解绑单元格选中监听</button>
+    <button id="insertRow">插入行（输入框为第几行插入）</button>
+    <button id="editValue">编辑单元格内容(输入框示例：G10,abc)</button>
+    <button id="save">保存文档</button>
+    <button id="addSheet">添加Sheet</button>
+    <button id="hideSheet">隐藏Sheet</button>
+    <button id="connectWorkbookActive">监听Excel文档切换</button>
+    <button id="connectSheetActive">监听Sheet切换</button>
+    <button id="connectWorkbookClose">监听当前Excel文档关闭</button>
+    <button id="showInputBox">弹出单元格输入框</button>
+    <button id="excelSaveAs">Excel另存为</button>
+    <button id="closeWorkbook">关闭当前Excel文档</button>
+    <button id="getUsedRange">获取使用区域</button>
+    <button id="showMessageBox">显示MessageBox</button>
+    <button id="setValidationArray">设置校验下拉框(输入框：A1,123,321,abc)</button>
+    <button id="setComment">添加批注(输入框：A1,批注内容)</button>
+    <button id="getCustomProperty">获取Excel文档自定义属性</button>
+    <button id="setCustomProperty">设置Excel文档自定义属性</button>
+    <button id="getUserInfo">获取用户信息</button>
+    <button id="uplpoadFile">上传文件到云端</button>
+    <button id="getDir">获取文件存储路径</button>
+    <button id="addFavorite">添加到收藏夹</button>
+  </div>
+</body>
+
+</html>
+<!-- 按照顺序引入 1：base64.js, 2: kso.js。当前版本不做模板加载方案。-->
+<script type="text/javascript" src="./js/base64.js"></script>
+<script type="text/javascript" src="./js/kso.js"></script>
+<script type="text/javascript" src='./js/demo.js'></script>

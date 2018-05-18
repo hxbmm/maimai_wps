@@ -1,0 +1,77 @@
+.wps_index_wrapper {
+	margin-left: 20px;
+	margin-right: 20px;
+	background: #FFFFFF;
+	border: 1px solid #EEEEEE;
+	text-align: center;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	font-family: Microsoft YaHei,Arial,Helvetica,sans-serif;
+}
+.wps_index_title {font-size: 18px; color: #222226;}
+.wps_index_sub_title {
+	font-size: 14px;
+	color: #222226;
+	margin-top: 10px;
+}
+.wps_index_img {font-size: 0; margin-top: 44px;}
+.wps_index_img img {max-width: 100%;}
+.wps_index_btn {
+	margin-top: 10px;
+	background: #6199F2;
+	border-radius: 8px;
+	margin-left: 56px;
+	margin-right: 56px;
+	height: 36px;
+	line-height:36px ;
+	text-align: center;
+	color: #fff;
+	font-size: 14px;
+	cursor: pointer;
+}
+.wps_index_license, .wps_index_copyright {font-size: 12px; color: #A7A7A7;}
+.wps_index_license {margin-top: 12px}
+.wps_index_license a {color: #A7A7A7; text-decoration: underline}
+.wps_index_copyright {margin-top: 48px}
+
+.wps_layer {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 20;
+}
+.wps_layer_cover {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 21;
+	background: rgba(0,0,0,0.48);
+}
+.wps_layer_content {
+	position: absolute;
+	left: 50%;
+	width: 320px;
+	margin-left: -160px;
+	top: 50%;
+	margin-top: -129px;
+	z-index: 22;
+	background: #fff;
+	padding: 40px 0;
+}
+.wps_layer_title {
+	font-size: 18px;
+	color: #222226;
+	line-height: 32px;
+	text-align: center;
+}
+.wps_index_btn_layer {margin: 58px 35px 0;}
+.wps_close {
+	font-size: 0;
+	position: absolute;
+	right: -5px;
+	top: -40px
+}

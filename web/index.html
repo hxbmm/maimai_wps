@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>脉脉</title>
+		<link rel="stylesheet" type="text/css" href="styles/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="styles/wps_index.css"/>
+	</head>
+	<body>
+		<div class="wps_index_wrapper">
+			<div class="wps_index_title">机会总是留给有准备的人</div>
+			<div class="wps_index_sub_title">一键投递适合你的高薪职位</div>
+			<div class="wps_index_img"><img src="images/wps_index_img.png" /></div>
+			<div class="wps_index_btn" id="wpsBtn">针对当前简历文档，匹配高薪职位</div>
+			<div class="wps_index_license">点击即代表同意 <a href="https://maimai.cn/maimai_license">用户协议条款</a></div>
+			<div class="wps_index_copyright">智能投递服务由脉脉提供</div>
+		</div>
+		<div class="wps_layer" id="wps_layer" style="display: none">
+			<div class="wps_layer_cover" id="wps_layer_cover"></div>
+			<div class="wps_layer_content">
+				<div class="wps_close" id="wps_close"><img src="images/wps_close.png" /></div>
+				<div class="wps_layer_title">抱歉，你的简历还不够完善<br />暂时无法匹配职位</div>
+				<div class="wps_index_btn wps_index_btn_layer">继续完善简历</div>
+			</div>
+		</div>
+		<div id="methodCallback"></div>
+		<div id="changeMsg"></div>
+		<div id="changeMsg2"></div>
+		<script type="text/javascript" src="./js/jquery-2.0.2.min.js"></script>
+		<script type="text/javascript" src="./js/base64.js"></script>
+		<script type="text/javascript" src="./js/kso.js"></script>
+		<script>
+			$(document).ready(function(){
+				$('#wps_close').click(function(){
+					$('#wps_layer').css('display', 'none');
+				});
+				$('#wps_layer_cover').click(function(){
+					$('#wps_layer').css('display', 'none');
+				});
+				var wpsBtn = $('#wpsBtn');
+				
+				function getFilepath() {
+					var path = document.querySelector('#path').value;
+					console.log(path);
+					return path;
+				}
+				
+				window.onUploadFileSucceeded = function(res) {
+					res = window.Base64.decode(res);
+					res = JSON.parse(res);
+					//window.location.href = 'https://maimai.cn/activity/wps_job_list?reg_key=accd38a60c2906d555a402f0c0d7d378901dc487&mobile=true'
+					console.log(res.url)
+					var resume_url = 'https://open.taou.com/maimai/job/v3/wps_resume_upload?u=10&doc_url=' + res.url;
+					document.querySelector('#methodCallback').innerHTML = '"onUploadFileSucceeded" result:' + resume_url + ' of  ksoJsAsynCall is done!'
+					
+					window.ksoJsAsynCall('httpPost', {
+					  // String
+					  url: resume_url,
+					  // Number: ms
+					  timeout: 10 * 1e3,
+					  // String
+					  cookie: '',
+					  // JSON
+					  header: {
+						// request header - demo
+						'X-Requested-With': 'XMLHttpRequest',
+						'Content-Type': 'application/json; charset=urf8'
+					  }
+					}, function (res) {
+					
+					  console.log('httpPost success');
+					  console.log(res);
+					  joblist_url= 'https://maimai.cn/activity/wps_job_list?mobile=true&reg_key='+res.result.data.key;
+						document.querySelector('#methodCallback').innerHTML = '"httpGet" result:' + joblist_url + ' of  ksoJsAsynCall is done!'
+					  window.location.href = joblist_url;
+						
+					});
+					
+					//document.querySelector('#changeMsg2').innerHTML = "success:" + resume_url;
+					 <!-- $.ajax({ -->
+						<!-- type: 'get', -->
+						<!-- url: resume_url, -->
+						<!-- dataType: 'json', -->
+						<!-- success: function(res){ -->
+							<!-- window.location.href = 'https://maimai.cn/activity/wps_job_list?mobile=true&reg_key='+res.key -->
+						<!-- }, -->
+						<!-- error: function(e){ -->
+							<!-- document.querySelector('#changeMsg').innerHTML = "error:" + JSON.stringify(e); -->
+						<!-- } -->
+					<!-- });  -->
+				}
+				window.onUploadFileFailed = function(res) {
+					res = window.Base64.decode(res)
+					document.querySelector('#changeMsg').innerHTML = "上传文件失败，请稍后重试"
+				}
+				wpsBtn.click(function(){
+					//$('#wps_layer').css('display', 'block');
+					console.log('wpsBtn.click');
+					window.ksoJsAsynCall('getActiviteFileName', {}, function (res) {
+						var filePath = res.result;
+						
+						window.ksoJsAsynCall('upLoadFile', {
+						  locate_file: filePath
+						}, function (res) {
+							console.log(res);
+							document.querySelector('#methodCallback').innerHTML = '"upLoadFile" ' + JSON.stringify(res.result) + ' of  ksoJsAsynCall is done!'
+						})
+						
+					});
+					
+					
+				});
+			})
+		</script>
+	</body>
+</html>
